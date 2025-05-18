@@ -6,18 +6,19 @@ import pytest
 from pages.AccountSuccessPage import AccountSuccessPage
 from pages.HomePage import HomePage
 from pages.RegistrationPage import RegistrationPage
+from test.BaseTest import BaseTest
 
 
-@pytest.mark.usefixtures("setup")
+#@pytest.mark.usefixtures("setup")
 
-class TestRegisteer:
+class TestRegisteer(BaseTest):
 
     #def __init__(self):
     driver = None
 
-    def generate_email_with_time_stamp(self):
-        time_stamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-        return "taj"+time_stamp+"@gmail.com"
+    # def generate_email_with_time_stamp(self):
+    #     time_stamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+    #     return "taj"+time_stamp+"@gmail.com"
 
     def test_registration_with_mandatoryfield(self):
         home_page = HomePage(self.driver)

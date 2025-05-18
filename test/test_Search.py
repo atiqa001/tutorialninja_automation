@@ -3,10 +3,10 @@ import pytest
 
 from pages.HomePage import HomePage
 from pages.SearchPage import SearchPage
+from test.BaseTest import BaseTest
 
 
-@pytest.mark.usefixtures("setup")
-class TestSearch:
+class TestSearch(BaseTest):
 
     # def __init__(self):
     driver = None
@@ -23,7 +23,7 @@ class TestSearch:
         home_page.click_on_search_button()
         expected_text='There is no product that matches the search criteria.'
         search_page=SearchPage(self.driver)
-        assert search_page.retrive_no_product_message().__eq__(expected_text)
+        assert search_page.retrieve_no_product_message().__eq__(expected_text)
 
     def test_search_without_entering_any_product(self):
         home_page = HomePage(self.driver)
@@ -31,5 +31,5 @@ class TestSearch:
         home_page.click_on_search_button()
         expected_text = 'There is no product that matches the search criteria.'
         search_page = SearchPage(self.driver)
-        assert search_page.retrive_no_product_message() == expected_text
+        assert search_page.retrieve_no_product_message() == expected_text
 

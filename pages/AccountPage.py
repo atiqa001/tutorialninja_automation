@@ -1,12 +1,15 @@
 from selenium.webdriver.common.by import By
 
+from pages.BasePage import BasePage
 
-class AccountPage:
+
+class AccountPage(BasePage):
 
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
-    edit_your_account_information_link_text = 'Edit your account information'
+    edit_your_account_information_xpath = '//*[@id="content"]/ul[1]/li[1]/a'
 
     def display_status_of_edit_your_account_information(self):
-        return self.driver.find_element(By.LINK_TEXT, self.edit_your_account_information_link_text).is_displayed()
+        return self.check_display_status_of_element(By.XPATH,self.edit_your_account_information_xpath)
+
