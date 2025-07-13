@@ -28,7 +28,7 @@ class BasePage:
         element = self.get_element(by, locator_value)
         return element.text
 
-    def get_element(self, by, locator_value, timeout=20):
+    def get_element(self, by, locator_value, timeout=30):
         locator_map = {
             "id": By.ID,
             "xpath": By.XPATH,

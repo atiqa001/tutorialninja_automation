@@ -13,7 +13,7 @@ class RegistrationPage(BasePage):
     email_address_field_id = 'input-email'
     telephone_field_id = 'input-telephone'
     password_field_id = 'input-password'
-    confirm_password_field_id = 'input-confirm-password'
+    confirm_password_field_id = 'input-confirm'
     privacy_policy_checkbox_name = 'agree'
     continue_button_xpath = '//*[@id="content"]/div/div[2]/div/form/input'
 

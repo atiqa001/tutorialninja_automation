@@ -1,12 +1,11 @@
 import time
-from datetime import datetime
 from selenium.webdriver.common.by import By
-import pytest
 
+#from BaseTestt import BaseTestt
 from pages.AccountSuccessPage import AccountSuccessPage
 from pages.HomePage import HomePage
 from pages.RegistrationPage import RegistrationPage
-from test.BaseTest import BaseTest
+from BaseTest import BaseTest
 
 
 #@pytest.mark.usefixtures("setup")
@@ -35,7 +34,7 @@ class TestRegisteer(BaseTest):
         registration_page.select_privacy_policy()
         registration_page.click_on_continue_button()
 
-        time.sleep(3)
+       # time.sleep(3)
         account_success_page=AccountSuccessPage(self.driver)
         expected_result ="Your Account Has Been Created!"
         assert account_success_page.account_success_message().__eq__(expected_result)
@@ -57,9 +56,9 @@ class TestRegisteer(BaseTest):
         self.driver.find_element(By.XPATH,'//*[@id="content"]/form/fieldset[3]/div/div/label[1]/input').click()
 
         self.driver.find_element(By.NAME, 'agree').click()
-        time.sleep(3)
+       # time.sleep(3)
         self.driver.find_element(By.XPATH, '//*[@id="content"]/form/div/div/input[2]').click()
-        time.sleep(3)
+        #time.sleep(3)
         expected_result = 'Your Account Has Been Created!'
         assert self.driver.find_element(By.XPATH, '//*[@id="content"]/h1').text.__eq__(expected_result)
 
@@ -78,9 +77,9 @@ class TestRegisteer(BaseTest):
         self.driver.find_element(By.XPATH, '//*[@id="content"]/form/fieldset[3]/div/div/label[1]/input').click()
 
         self.driver.find_element(By.NAME, 'agree').click()
-        time.sleep(3)
+       # time.sleep(3)
         self.driver.find_element(By.XPATH, '//*[@id="content"]/form/div/div/input[2]').click()
-        time.sleep(3)
+       # time.sleep(3)
         expected_result = 'Warning: E-Mail Address is already registered!'
         assert self.driver.find_element(By.XPATH, '//*[@id="account-register"]/div[1]').text.__eq__(expected_result)
 
@@ -101,7 +100,7 @@ class TestRegisteer(BaseTest):
         # driver.find_element(By.NAME, 'agree').click()
         # time.sleep(3)
         self.driver.find_element(By.XPATH, '//*[@id="content"]/form/div/div/input[2]').click()
-        time.sleep(3)
+      #  time.sleep(3)
         expected_result1 = 'Warning: You must agree to the Privacy Policy!'
         assert self.driver.find_element(By.XPATH, '//*[@id="account-register"]/div[1]').text.__eq__(expected_result1)
 

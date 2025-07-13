@@ -1,9 +1,6 @@
-
-import pytest
-
 from pages.HomePage import HomePage
 from pages.SearchPage import SearchPage
-from test.BaseTest import BaseTest
+from BaseTest import BaseTest
 
 
 class TestSearch(BaseTest):
