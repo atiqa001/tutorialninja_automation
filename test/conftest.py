@@ -5,6 +5,7 @@ import pytest
 from allure_commons.types import AttachmentType
 from selenium import webdriver
 from utilities import ReadConfigurations
+from selenium.webdriver.chrome.options import Options
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_makereport(item, call):
@@ -19,7 +20,26 @@ def setup(request):
     browser = ReadConfigurations.read_configuration("basic info", "browser")
 
     if browser == 'chrome':
-        driver = webdriver.Chrome()
+        # launch Chrome with flags that disable the password manager and security alerts.
+        # Disable Password Check in Chrome Options
+        temp_profile = os.path.join(os.getcwd(), "temp_profile_chrome")
+        os.makedirs(temp_profile, exist_ok=True)
+
+        options = Options()
+        options.add_argument(f"--user-data-dir={temp_profile}")
+        options.add_argument("--disable-infobars")
+        options.add_argument("--disable-notifications")
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--incognito")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option("useAutomationExtension", False)
+        options.add_experimental_option("prefs", {
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False
+        })
+        driver = webdriver.Chrome(options=options)
+
     elif browser == 'firefox':
         driver = webdriver.Firefox()
     elif browser == 'edge':

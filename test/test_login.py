@@ -28,6 +28,12 @@ class TestLogin(BaseTest):
        # time.sleep(3)
         account_page = AccountPage(self.driver)
         account_page.display_status_of_edit_your_account_information()
+        time.sleep(3)
+        account_page.redirect_to_homepage()
+        time.sleep(3)
+
+        assert home_page.is_at_home_page(), "Did not land on Home Page"
+
 
     def test_login_with_invalid_email_and_valid_password(self):
         home_page = HomePage(self.driver)

@@ -17,6 +17,7 @@ class HomePage(BasePage):
     login_option_xpath = '//*[@id="top-links"]/ul/li[2]/ul/li[2]/a'
     registration_option_xpath = '//*[@id="top-links"]/ul/li[2]/ul/li[1]/a'
 
+
     def enter_product_into_search_box_field(self, product_name):
         self.type_into_element(product_name, By.NAME, self.search_box_field_name)
 
@@ -38,4 +39,8 @@ class HomePage(BasePage):
         self.element_click(By.XPATH, self.registration_option_xpath)
         return RegistrationPage(self.driver)
 
+    def is_at_home_page(self):
+        """Check if current URL contains 'home' or matches exact home URL"""
+        current_url = self.driver.current_url
+        return "home" in current_url.lower() or current_url == "https://tutorialsninja.com/demo/index.php?route=common/home"
 
